@@ -1,0 +1,143 @@
+* {
+  margin: 0;
+}
+@font-face {
+  font-family: "HelveticaNeue";
+  src:
+      url('fonts/HelveticaNeueLt.ttf')
+      format('truetype');
+}
+@font-face {
+  font-family: "Sanko";
+  src:
+      url('fonts/Senko\ Hanabi\ DEMO.otf')
+}
+@font-face {
+  font-family: "Warheed";
+  src:
+      url('fonts/Warheed.otf')
+}
+@font-face {
+  font-family: "Ketsana";
+  src:
+      url('fonts/Ketsana-Regular-PU.ttf')
+      format('truetype');
+}
+@font-face {
+  font-family: "mybela";
+  src:
+      url('fonts/Mybela.ttf')
+}
+@font-face {
+  font-family: "ojol";
+  src:
+      url('fonts/ojol.otf')
+}
+@font-face {
+  font-family: "Austine";
+  src:
+      url('fonts/Austine\ Demo.ttf')
+}
+@font-face {
+  font-family: "Serenity";
+  src:
+      url('fonts/Serenity\ Script.otf')
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/timelapse-bg-2.jpg");
+  background-size: cover;
+}
+.header {
+  width: 100%;
+  height: 25vh;
+  background-color: rgba(255, 255, 255, 0.7);
+  text-align: left;
+  padding-left: 24%;
+  font-size: 70pt;
+  font-weight: bolder;
+  color: black;
+  font-family: "mybela";
+}
+.flybop {
+  padding-top: 40px;
+}
+.searchbar {
+  width: 100%;
+  /*height: 15vh;*/
+  text-align: center;
+  font-size: 40pt;
+}
+.main-body {
+  height: 35%;
+  margin: auto;
+  margin-top: 100px;
+  /* border-style: solid;
+  border-color: white;
+  border-width: 10px; */
+  width: 1000px;
+  padding: 30px 0px 10px;
+  /* background-color: yellow; */
+}
+.main-question {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 65pt;
+  text-align: center;
+  font-family: "Sanko";
+  color: white;
+  /* background-color: cornflowerblue; */
+}
+/* div:nth-of-type(6), div:nth-of-type(7) {
+  font-family: "Senko";
+}
+div:nth-of-type(8) {
+  font-family: "HelveticaNeue";
+} */
+.button {
+  background-color: white;
+  color: black;
+  font-size: 36px;
+  font-family: "Sanko";
+  border: none;
+  padding: 0px 36px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block;*/
+  /* height: 100%; */
+  margin: 0;
+  margin-left: 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.button:hover {
+  opacity: 0.5;
+}
+.buttons {
+  /* padding-top: 20px; */
+  margin: 0;
+  /*display: inline-block;*/
+ /* justify-content: center;*/
+}
+.rcorners {
+  /* position: absolute; */
+  /* display: inline-block; */
+  border-radius: 3px;
+  border: 1px solid gray;
+  font-size: 24;
+  float: left;
+  width: 85%;
+  /* padding-right: 5px; */
+  /* display: flex;
+  justify-content: center;
+  width: auto; */
+}
+
+.textbar-and-button {
+  /* padding-top: 20px; */
+  /* background-color: green; */
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  justify-content: center;
+}

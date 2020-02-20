@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  font-family: "FlyBop";
+}
+@font-face {
+  font-family: 'FlyBop';
+  src: 
+      url('fonts/CFBandofBrothersPERSONAL-Re.ttf')
+      format('truetype');
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/paint-bg-2.jpeg");
+  background-size: contain;
+}
+.header {
+  width: 100%;
+  height: 25vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-size: 60pt;
+  font-weight: bolder;
+  color: red;
+  font-family: "FlyBop";
+}
+.flybop {
+  padding-top: 40px;
+}
+.searchbar {
+  width: 100%;
+  /*height: 15vh;*/
+  text-align: center;
+  font-size: 40pt;
+}
+.main-body {
+  height: 35%;
+  margin: auto;
+  margin-top: 100px;
+  background-color: white;
+  border-style: solid;
+  border-width: 5px;
+  width: 500px;
+  border-color: red;
+  padding: 30px 30px 10px 30px;
+}
+.main-question {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-size: 24pt;
+  text-align: center;
+}
+.button {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  font-size: 24px;
+  border: none;
+  padding: 10px 36px;
+  text-align: center;
+  text-decoration: none;
+ /* display: inline-block;*/
+}
+.button:hover {
+  opacity: 0.5;
+}
+.buttons {
+  width: auto;
+  padding-top: 20px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+.rcorners {
+  /* position: absolute; */
+  /*border-radius: 3px;*/
+  border: 1px solid gray;
+  width: 100%;
+  height: 45px;
+  font-size: 24;
+  display: flex;
+  justify-content: center;
+}

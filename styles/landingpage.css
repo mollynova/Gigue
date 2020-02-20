@@ -1,0 +1,25 @@
+*{
+    font-family: 'Courier New', Courier, monospace;
+}
+    
+html, body {
+    height: 100%;       
+}
+
+label {
+    font-size: xx-large;
+}
+
+.container-fluid {
+    background-color: lightblue;
+}
+
+#form_area{
+    /* Here is a temporary background image....this can be played around with later, maybe with
+    a nicer background image/something more custom*/
+    background-image: radial-gradient(closest-side, #feb2b1, #fefeb1, #FED8B1);
+    background-repeat: no-repeat;
+    background-size: cover;
+    outline: 5px solid black;
+}
+    
