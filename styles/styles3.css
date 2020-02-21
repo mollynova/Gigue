@@ -43,6 +43,20 @@
   src:
       url('fonts/Serenity\ Script.otf')
 }
+
+@font-face {
+  font-family: "Pacifico";
+  src:
+      url('fonts/Pacific-Regular.ttf')
+      format('truetype');
+}
+
+@font-face {
+  font-family: "Gravitas One";
+  src:
+      url('fonts/GravitasOne-Regular.ttf')
+      format('truetype');
+}
 .container {
   width: 100vw;
   height: 100vh;
@@ -51,17 +65,17 @@
 }
 .header {
   width: 100%;
-  height: 25vh;
+  height: 20vh;
   background-color: rgba(255, 255, 255, 0.7);
   text-align: left;
-  padding-left: 24%;
+  padding-left: 5%;
   font-size: 70pt;
   font-weight: bolder;
   color: black;
-  font-family: "mybela";
+  font-family: "Serenity";
 }
-.flybop {
-  padding-top: 40px;
+.gigue {
+  padding-top: 10px;
 }
 .searchbar {
   width: 100%;
@@ -83,9 +97,9 @@
 .main-question {
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 65pt;
+  font-size: 50pt;
   text-align: center;
-  font-family: "Sanko";
+  font-family: "Gravitas One";
   color: white;
   /* background-color: cornflowerblue; */
 }
@@ -99,7 +113,7 @@ div:nth-of-type(8) {
   background-color: white;
   color: black;
   font-size: 36px;
-  font-family: "Sanko";
+  font-family: "Gravitas One";
   border: none;
   padding: 0px 36px;
   text-align: center;
