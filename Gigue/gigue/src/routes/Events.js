@@ -1,0 +1,1 @@
+/* page for loading events on bootstrap cards */
