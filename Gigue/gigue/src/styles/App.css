@@ -108,3 +108,38 @@
   display: flex;
   justify-content: center;
 }
+
+.eventsPage {
+  color: white;
+  font-size: 30pt;
+}
+
+/* from here on out is sample code  to be deleted */
+
+nav ul {
+  list-style: none;
+  display: flex;
+  background-color: black;
+  margin-bottom: 20px;
+}
+
+nav ul li {
+  padding: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.current {
+  border-bottom: 4px solid white;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 15px;
+}
