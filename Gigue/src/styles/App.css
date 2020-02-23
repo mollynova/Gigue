@@ -38,25 +38,54 @@
 }
 
 .header {
+  display: inline-block;
   width: 100vw;
   margin: 0px;
-  height: 20vh;
+  height: 13vh;
   background-color: rgba(255, 255, 255, 0.7);
-  text-align: left;
-  padding-left: 24%;
-  font-size: 60pt;
-  font-weight: bolder;
+  padding-left: 5%;
+  font-size: 40pt;
+  /* font-weight: bold; */
   color: black;
   font-family: "mybela";
 }
 .header-title {
-  padding-top: 20px;
+  display: inline-block;
+  padding-top: 10px;
+}
+.help-link {
+  float: right;
+  padding-right: 5%;
+  padding-top: 10px;
+  color: black;
+}
+.help {
+  color: black;
+}
+.help:hover {
+  color: rgba(0, 0, 0, 0.712);
+}
+.helpPage {
+  font-size: 25px;
+  color: white;
+}
+.icon {
+  display: inline-block;
+  height: 80%;
+  margin: 0;
 }
 .searchbar {
   width: 100vw;
   text-align: center;
   font-size: 40pt;
   font-family: "HelveticaNeue";
+}
+.btn {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 40pt;
 }
 .main-body {
   height: 35%;
