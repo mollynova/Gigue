@@ -1,41 +1,61 @@
 /* landing page */
 
-import React, { Component } from "react";
+import React, { PropTypes, Component } from "react";
 import "./styles/bootstrap/css/bootstrap.min.css";
 import "./styles/App.css";
 import "./index.css";
 import Header from "./routes/Header";
 import Body from "./routes/Body";
-import { NavLink } from "react-router-dom";
+import { Switch, Route, NavLink } from "react-router-dom";
+import Landing from "./routes/Landing";
+import Events from "./routes/Events";
+import Help from "./routes/Help";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    // initializing state. currently only has one value
-    this.state = {};
+    this.state = { zip: "" };
+    this.handleZipChange = this.handleZipChange.bind(this);
   }
 
+  handleZipChange = newZip => {
+    this.setState({ zip: newZip });
+  };
+
   render() {
+    const currZip = this.state.zip;
+
     return (
       <div className="App">
-        <Header />
-        <Body />
+        <Header zip={currZip} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Landing
+                {...props}
+                zip={currZip}
+                onZipChange={this.handleZipChange}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/Events"
+            render={props => (
+              <Events
+                {...props}
+                zip={currZip}
+                onZipChange={this.handleZipChange}
+              />
+            )}
+          />
+          <Route exact path="/Help" component={Help}></Route>
+        </Switch>
       </div>
     );
   }
 }
-
-// const Navigation = () => (
-//   <nav>
-//     <ul>
-//       <li>
-//         <NavLink to="/">Home</NavLink>
-//       </li>
-//       <li>
-//         <NavLink to="/Events">Events</NavLink>
-//       </li>
-//     </ul>
-//   </nav>
-// );
 
 export default App;

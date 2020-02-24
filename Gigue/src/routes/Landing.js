@@ -14,13 +14,12 @@ class Landing extends React.Component {
     */
     this.state = { value: "", toEvents: false };
 
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeZip = this.handleChangeZip.bind(this);
   }
 
-  // sets the state for 'value' (which is the city the user entered) as a user types
-  handleChange(event) {
-    this.setState({ value: event.target.value });
+  handleChangeZip(e) {
+    this.props.onZipChange(e.target.value);
   }
 
   // Function called when a user hits submit from the landing page. this.state.value is the city they entered
@@ -32,7 +31,7 @@ class Landing extends React.Component {
 
     // any code written after this is going to get called BEFORE the Events page is rendered.
     // this.state.value is the name of the city the user typed in
-    console.log("You entered: " + this.state.value);
+    this.handleChangeZip(event);
     event.preventDefault();
   }
 
@@ -49,8 +48,8 @@ class Landing extends React.Component {
           </div>
           <div className="textbar-and-button">
             <input
-              onChange={this.handleChange}
-              value={this.state.value}
+              onChange={this.handleChangeZip}
+              value={this.props.zip}
               type="text"
               name="city"
               id="citylabel"
