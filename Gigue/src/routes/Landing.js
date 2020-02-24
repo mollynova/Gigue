@@ -31,7 +31,7 @@ class Landing extends React.Component {
 
     // any code written after this is going to get called BEFORE the Events page is rendered.
     // this.state.value is the name of the city the user typed in
-    this.handleChangeZip(event);
+    //this.handleChangeZip(event);
     event.preventDefault();
   }
 
