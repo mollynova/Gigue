@@ -6,7 +6,11 @@ import mainLogo from "../images/icon.png";
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.props.onZipChange(e.target.value);
   }
 
   render() {

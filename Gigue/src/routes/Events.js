@@ -7,16 +7,20 @@ import { NavLink } from "react-router-dom";
 class Events extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  handleChange(e) {
+    this.props.onZipChange(e.target.value);
+  }
   // below I added a link back to the landing page, just to make our lives easier while testing
   // we'll remove it when we actually build the events page, since users won't need to go back to
   // the landing page
   render() {
+    const thisZip = this.props.zip;
     return (
       <div>
-        <div className="eventsPage">Yo we reloaded as a new page. Woohoo.</div>
+        <div className="eventsPage">Zip entered was: {thisZip}</div>
         <div>
           <ul>
             <li>
