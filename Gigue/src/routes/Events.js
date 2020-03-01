@@ -37,6 +37,7 @@ class Events extends React.Component {
                   obj['EventName'] = x.displayName;
                   obj["Uri"] = x.uri;
                   obj["Venue"] = x.venue.displayName;
+                  obj["StartDate"] = x.start.date;
                   
                   return obj;
                 
