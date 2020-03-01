@@ -16,62 +16,62 @@ class Events extends React.Component {
       .then(result => result.json())
       .then(result => {
         console.log(result);
-        const songkickAreaUrl = 'https://api.songkick.com/api/3.0/search/locations.json?location=geo:45.52,-122.93&apikey=nD4GefUecMO1Dzwh'
-        //TODO:Need to actually grab location info from result
-        fetch(songkickAreaUrl)
+        return result.results;
+      })
+      .then(result => {
+        return result[0].geometry.location;
+      })
+      .then(result => {
+        const lat = result.lat.toFixed(2);
+        const long = result.lng.toFixed(2);
+        const songkickAreaUrl = 'https://api.songkick.com/api/3.0/search/locations.json?location=geo:' + lat + ',' + long + '&apikey=nD4GefUecMO1Dzwh'
+        console.log(songkickAreaUrl);
+        return songkickAreaUrl;
+      })
+      .then(url => {
+        fetch(url)
           .then(result => result.json())
-          .then(result =>{
-            console.log(result);
-            //TODO: Actual grab area id from result, specify dates?
-            const songkickEventsUrl = 'https://api.songkick.com/api/3.0/metro_areas/12283/calendar.json?apikey=nD4GefUecMO1Dzwh'
-            fetch(songkickEventsUrl)
-              .then(response => response.json())
-              .then(data => {
-                console.log(data);
-                console.log(data.resultsPage.results.event);
-                return data.resultsPage.results.event;
-              })
-              .then(data => {
-                const eventsQueried = data.map(x => {
-                  let obj = {};
-                  obj['EventName'] = x.displayName;
-                  obj["Uri"] = x.uri;
-                  obj["Venue"] = x.venue.displayName;
-                  obj["StartDate"] = x.start.date;
-                  
-                  return obj;
+          .then(result => result.resultsPage.results)
+          .then(result => {
+            const metroAreaId = result.location[0].metroArea.id;
+            const songkickEventsUrl = 'https://api.songkick.com/api/3.0/metro_areas/' + metroAreaId + '/calendar.json?apikey=nD4GefUecMO1Dzwh';
+            console.log(songkickEventsUrl);
+            return songkickEventsUrl;
+          })
+          .then(url => {
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+              console.log(data.resultsPage.results.event);
+              return data.resultsPage.results.event;
+            })
+            .then(data => {
+              const eventsQueried = data.map(x => {
+                let obj = {};
+                obj['EventName'] = x.displayName;
+                obj["Uri"] = x.uri;
+                obj["Venue"] = x.venue.displayName;
+                obj["StartDate"] = x.start.date;
                 
-                });
-                console.log(eventsQueried);
-                return eventsQueried;
-              })
-              .then(results => {
-                this.setState({
-                  events: results
-                })
-              })
-                  //TODO: Add more things here
-                  /*
-                  let obj ={};
-                  obj['eventName'] = x.eventName;
-                  //obj[uri] = x.uri;
-                  obj['venue'] = x.venue.displayName;
-                  obj['artists'] = x.performance.map(y => y.displayName); 
-                  x.id
-                */
-                //console.log(eventsQueried);
+                return obj;
               
-              
-              .catch(error => {
-                console.log(error);
               });
-              
-              
-          });
-        /*this.setState({
-          events: result
-        });*/
-      });
+              console.log(eventsQueried);
+              return eventsQueried;
+            })
+            .then(results => {
+              this.setState({
+                events: results
+              })
+            })
+          })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+       
   }
 
 
