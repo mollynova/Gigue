@@ -37,8 +37,6 @@ const EventInfo = props => {
 
 class EventCard extends React.Component {
   render() {
-    console.log(this.props);
-
     const { eventsData } = this.props;
     return <EventInfo eventsData={eventsData} />;
   }

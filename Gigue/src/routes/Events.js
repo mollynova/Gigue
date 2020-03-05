@@ -4,6 +4,7 @@ import React from "react";
 import "../styles/App.css";
 import { NavLink } from "react-router-dom";
 import EventCard from "./EventCard";
+import ReactLoading from "react-loading";
 
 class Events extends React.Component {
   state = {
@@ -62,7 +63,8 @@ class Events extends React.Component {
             })
             .then(results => {
               this.setState({
-                events: results
+                events: results,
+                done: true
               })
             })
           })
@@ -78,6 +80,9 @@ class Events extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      done: undefined
+   }
   }
 
   handleChange(e) {
@@ -91,11 +96,19 @@ class Events extends React.Component {
   render() {
     const thisZip = this.props.zip;
     const { events } = this.state;
+    //<EventCard eventsData={events} />
+    //<div className="eventsPage">Zip entered was: {thisZip}</div>
     return (
       <div>
-        <EventCard eventsData={events} />
-        <div className="eventsPage">Zip entered was: {thisZip}</div>
         
+       
+        {!this.state.done ? (
+          <div className="container">
+            <ReactLoading type={"bars"} color={"white"} />
+          </div>
+         ) : (
+          <EventCard eventsData={events} />
+         )}
         <div>
           <ul>
             <li>
