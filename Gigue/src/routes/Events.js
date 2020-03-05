@@ -54,6 +54,16 @@ class Events extends React.Component {
                 obj["Uri"] = x.uri;
                 obj["Venue"] = x.venue.displayName;
                 obj["StartDate"] = x.start.date;
+                obj["Location"] = x.location.city;
+                obj["Headliners"] = x.performance.filter(artist => {
+                  if(artist.billing == "headline")
+                    return artist;
+                }).map(y => y.displayName);
+                obj["SupportArtists"] = x.performance.filter(artist => {
+                  if(artist.billing != "headline"){
+                    return artist;
+                  }
+                }).map(y => y.displayName)
                 
                 return obj;
               
