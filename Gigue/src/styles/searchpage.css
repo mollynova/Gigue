@@ -2,6 +2,7 @@
 the repository*/
 /*Code for card flip animation came from: https://www.w3schools.com/howto/howto_css_flip_card.asp */
 
+
 form > .row {
     background-color: lightblue;
 }
@@ -35,9 +36,7 @@ label {
     position: absolute;
     top: 0;
   }
-
-
-  
+ 
   .card-flip:hover .front {
     transform: rotateY(-180deg);
   }

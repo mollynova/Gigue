@@ -9,12 +9,12 @@ const EventInfo = props => {
     console.log(row.eventName);
     return (
       <div className="card-containers" key={index}>
-        <div className="card card-flip border-primary">
+        <div className="card card-flip border-primary" key={index}>
           <div className="front">
             <div className="card-body">
-              <h5 className="card-title">{row.EventName}</h5>
+              <h5 className="card-title">{row.Headliners.map((item, index) => {return (index ? ', ': '') + item})}</h5>
+              <h6 className="card-subtitle text-muted">Supporting Artists: {row.SupportArtists.map((item, index) => {return (index ? ', ': '') + item}) }</h6>
               <p className="card-text" id="performance-dates">Date: {row.StartDate}</p>
-              <button href="#" className="btn-primary">Flip for More Info!</button>
             </div>
           </div>
 

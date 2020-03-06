@@ -1,10 +1,10 @@
 /* page for loading events on bootstrap cards */
-
+import { Redirect, NavLink, Link } from "react-router-dom";
 import React from "react";
 import "../styles/App.css";
-import { NavLink } from "react-router-dom";
 import EventCard from "./EventCard";
 import ReactLoading from "react-loading";
+import Landing from "./Landing";
 
 class Events extends React.Component {
   state = {
@@ -106,6 +106,11 @@ class Events extends React.Component {
   render() {
     const thisZip = this.props.zip;
     const { events } = this.state;
+    //TODO: This section is not working. It just creates an empty page. I don't know why
+    if(thisZip == ''){
+      alert("No Zip is inputted - redirecting to main page");
+      return <Redirect to="/Landing" />;
+    }
     //<EventCard eventsData={events} />
     //<div className="eventsPage">Zip entered was: {thisZip}</div>
     return (
