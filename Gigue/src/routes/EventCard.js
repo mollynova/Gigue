@@ -11,19 +11,38 @@ const EventInfo = props => {
         <div className="card card-flip border-primary" key={index}>
           <div className="front">
             <div className="card-body">
-              <h5 className="card-title">{row.Headliners.map((item, index) => {return (index ? ', ': '') + item})}</h5>
-              <h6 className="card-subtitle text-muted">Supporting Artists: {row.SupportArtists.map((item, index) => {return (index ? ', ': '') + item}) }</h6>
-              <p className="card-text" id="performance-dates">Date: {row.StartDate}</p>
+              <h5 className="card-title">
+                {row.Headliners.map((item, index) => {return (index ? ', ': '') + item})}
+              </h5>
+              <h6 className="card-subtitle text-muted">
+                Supporting Artists: {row.SupportArtists.map((item, index) => {return (index ? ', ': '') + item}) }
+              </h6>
+              <p className="card-text" id="performance-dates">
+                Date: {row.StartDate}
+              </p>
             </div>
           </div>
 
           <div className="back">
             <div className="card-body">
-              <h5 className="card-title">{row.EventName}</h5>
-              <h6 className="card-subtitle mb-2 text-muted">{row.StartDate}</h6>
-              <p className="card-text" id="performance-dates">{row.Venue}</p>
-              <p className="card-text">{row.Location}</p>
-              <a href={row.Uri} className="card-link">Click to Buy Tickets</a>
+              <h5 className="card-title">
+                {row.EventName}
+              </h5>
+              <h6 className="card-subtitle mb-2 text-muted">
+                {row.StartDate}
+              </h6>
+              <p className="card-text" id="performance-dates">
+                {row.Venue}
+              </p>
+              <p className="card-text">
+                {row.Location}
+              </p>
+              <button className="btn btn-primary" onClick={() => props.toArtistPage(row.Headliners[0])} >
+                Artist Page
+              </button>
+              <a href={row.Uri} className="card-link">
+                Click to Buy Tickets
+              </a>
             </div>
           </div>
         </div>

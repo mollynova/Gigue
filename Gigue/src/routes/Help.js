@@ -18,7 +18,7 @@ class Help extends React.Component {
   render() {
     return (
       <div>
-        <div className="card">
+        <div className="card help-card">
           <div clasName="card-body">
             <p id="help-text">
               This is the Help Page for Gigue! Right now, Gigue is a series of simple

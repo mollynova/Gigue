@@ -120,10 +120,12 @@ class Events extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.toArtistPage = this.toArtistPage.bind(this);
     this.state = {
       done: undefined,
       error: false,
-      errorMsg: undefined
+      errorMsg: undefined,
+      artist: undefined
    }
   }
 
@@ -131,7 +133,13 @@ class Events extends React.Component {
     this.props.onZipChange(e.target.value);
   }
 
-  
+  toArtistPage = artistName => {
+    this.setState({
+      artist : artistName
+    })
+    return <Redirect to="/ArtistPage" />;
+
+  }
   // below I added a link back to the landing page, just to make our lives easier while testing
   // we'll remove it when we actually build the events page, since users won't need to go back to
   // the landing page
