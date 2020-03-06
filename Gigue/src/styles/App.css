@@ -32,11 +32,9 @@
 }
 .App {
   width: 100vw;
-  
   height: 100vh;
   background-image: url("../images/timelapse-bg-2.jpg");
-  background-size: contain;
-  background-attachment: fixed;
+  background-size: cover;
 }
 
 .header {
@@ -60,6 +58,11 @@
   padding-right: 5%;
   padding-top: 10px;
   color: black;
+}
+
+.main-link{
+  color:black;
+  display: inline;
 }
 .help {
   color: black;

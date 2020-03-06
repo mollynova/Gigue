@@ -5,7 +5,7 @@ import "../styles/App.css";
 import EventCard from "./EventCard";
 import ReactLoading from "react-loading";
 import Landing from "./Landing";
-
+import "../styles/searchpage.css";
 class Events extends React.Component {
   state = {
     events: []
@@ -109,7 +109,7 @@ class Events extends React.Component {
     //TODO: This section is not working. It just creates an empty page. I don't know why
     if(thisZip == ''){
       alert("No Zip is inputted - redirecting to main page");
-      return <Redirect to="/Landing" />;
+      return <Redirect to="/" />;
     }
     //<EventCard eventsData={events} />
     //<div className="eventsPage">Zip entered was: {thisZip}</div>

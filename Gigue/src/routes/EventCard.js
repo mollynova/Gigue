@@ -23,6 +23,7 @@ const EventInfo = props => {
               <h5 className="card-title">{row.EventName}</h5>
               <h6 className="card-subtitle mb-2 text-muted">{row.StartDate}</h6>
               <p className="card-text" id="performance-dates">{row.Venue}</p>
+              <p className="card-text">{row.Location}</p>
               <a href={row.Uri} className="card-link">Click to Buy Tickets</a>
             </div>
           </div>

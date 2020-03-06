@@ -20,7 +20,12 @@ class Header extends React.Component {
           <div className="icon">
             <img src={mainLogo} />
           </div>
-          <div className="header-title">Gigue</div>
+          <div className="main-link">
+            <NavLink to="/" style={{textDecoration: "none"}}>
+              <div className="header-title">Gigue</div>
+            </NavLink>
+          </div>
+        
           <div className="help-link">
             <NavLink to="/Help" style={{ textDecoration: "none" }}>
               <div className="help">Help</div>
