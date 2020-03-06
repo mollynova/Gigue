@@ -45,3 +45,9 @@ label {
     transform: rotateY(0deg);
   }
 
+  .error-msg {
+    color: white;
+    display: grid;
+    justify-content: center;
+  }
+

@@ -16,6 +16,9 @@ class Events extends React.Component {
     fetch(googleUrl)
       .then(result => result.json())
       .then(result => {
+        if(result.results.length == 0){
+          throw "Invalid Zipcode!";
+        }
         console.log(result);
         return result.results;
       })
@@ -32,7 +35,13 @@ class Events extends React.Component {
       .then(url => {
         fetch(url)
           .then(result => result.json())
-          .then(result => result.resultsPage.results)
+          .then(result => {
+            console.log(result);
+            if(result.resultsPage.totalEntries == '0'){
+              throw "Area out of range";
+            }
+            return result.resultsPage.results
+          })
           .then(result => {
             const metroAreaId = result.location[0].metroArea.id;
             const songkickEventsUrl = 'https://api.songkick.com/api/3.0/metro_areas/' + metroAreaId + '/calendar.json?apikey=nD4GefUecMO1Dzwh';
@@ -45,6 +54,9 @@ class Events extends React.Component {
             .then(data => {
               console.log(data);
               console.log(data.resultsPage.results.event);
+              if(data.resultsPage.totalEntries == 0){
+                throw "No Concerts in this Area!"
+              }
               return data.resultsPage.results.event;
             })
             .then(data => {
@@ -77,10 +89,28 @@ class Events extends React.Component {
                 done: true
               })
             })
+            .catch(error =>{
+              console.log(error)
+              this.setState({
+                error: true,
+                errorMsg: error
+              })
+            })
+          })
+          .catch(error =>{
+            console.log(error)
+            this.setState({
+              error: true,
+              errorMsg: error
+            })
           })
       })
       .catch(error => {
         console.log(error)
+        this.setState({
+          error: true,
+          errorMsg: error 
+        })
       })
 
        
@@ -91,7 +121,9 @@ class Events extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
-      done: undefined
+      done: undefined,
+      error: false,
+      errorMsg: undefined
    }
   }
 
@@ -116,14 +148,23 @@ class Events extends React.Component {
     return (
       <div>
         
-       
-        {!this.state.done ? (
-          <div className="container">
-            <ReactLoading type={"bars"} color={"white"} />
+        {!this.state.error ? (
+          !this.state.done ? (
+            <div className="container">
+              <ReactLoading type={"bars"} color={"white"} />
+            </div>
+           ) : (
+            <EventCard eventsData={events} />
+           )
+        ) :(
+          <div className="error-msg">
+            <h1>
+              {this.state.errorMsg}
+            </h1>
+
           </div>
-         ) : (
-          <EventCard eventsData={events} />
-         )}
+        )}
+        
         <div>
           <ul>
             <li>

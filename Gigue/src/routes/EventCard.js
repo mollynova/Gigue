@@ -4,7 +4,6 @@ import React from 'react';
 
 
 const EventInfo = props => {
-
   const rows = props.eventsData.map((row, index) => {
     console.log(row.eventName);
     return (
