@@ -3,11 +3,17 @@ import "../styles/App.css";
 
 class ArtistPage extends React.Component{
     state = {
-        artist = undefined
+        artist : ""
     }
 
     render(){
-        const artist = this.props.artist;
-        console.log(artist);
+        const artist = this.props.location.state.artist;
+        console.log(this.props);
+        return(
+            <h2>{artist}</h2>
+            
+        )
     }
 }
+
+export default ArtistPage;

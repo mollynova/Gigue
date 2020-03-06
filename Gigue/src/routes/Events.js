@@ -6,6 +6,7 @@ import EventCard from "./EventCard";
 import ReactLoading from "react-loading";
 import Landing from "./Landing";
 import "../styles/searchpage.css";
+
 class Events extends React.Component {
   state = {
     events: []
@@ -124,8 +125,7 @@ class Events extends React.Component {
     this.state = {
       done: undefined,
       error: false,
-      errorMsg: undefined,
-      artist: undefined
+      errorMsg: undefined
    }
   }
 
@@ -134,10 +134,12 @@ class Events extends React.Component {
   }
 
   toArtistPage = artistName => {
-    this.setState({
-      artist : artistName
-    })
-    return <Redirect to="/ArtistPage" />;
+    return this.props.history.push({
+      pathname: "/ArtistPage",
+      state: {
+        artist: artistName
+      }
+    });
 
   }
   // below I added a link back to the landing page, just to make our lives easier while testing
@@ -162,7 +164,7 @@ class Events extends React.Component {
               <ReactLoading type={"bars"} color={"white"} />
             </div>
            ) : (
-            <EventCard eventsData={events} />
+            <EventCard eventsData={events} toArtistPage={this.toArtistPage}/>
            )
         ) :(
           <div className="error-msg">

@@ -5,7 +5,6 @@ import React from 'react';
 
 const EventInfo = props => {
   const rows = props.eventsData.map((row, index) => {
-    console.log(row.eventName);
     return (
       <div className="card-containers" key={index}>
         <div className="card card-flip border-primary" key={index}>
@@ -56,8 +55,8 @@ const EventInfo = props => {
 
 class EventCard extends React.Component {
   render() {
-    const { eventsData } = this.props;
-    return <EventInfo eventsData={eventsData} />;
+    const { eventsData, toArtistPage } = this.props;
+    return <EventInfo eventsData={eventsData} toArtistPage={toArtistPage}/>;
   }
 }
 

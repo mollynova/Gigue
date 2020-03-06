@@ -10,6 +10,7 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import Landing from "./routes/Landing";
 import Events from "./routes/Events";
 import Help from "./routes/Help";
+import ArtistPage from "./routes/ArtistPage";
 
 class App extends Component {
   constructor(props) {
@@ -52,6 +53,13 @@ class App extends Component {
             )}
           />
           <Route exact path="/Help" component={Help}></Route>
+          <Route exact path="/ArtistPage" render={props =>(
+            <ArtistPage
+              {...props}
+            />
+          )}>
+
+          </Route>
         </Switch>
       </div>
     );
