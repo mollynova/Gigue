@@ -36,7 +36,7 @@ const EventInfo = props => {
               <p className="card-text">
                 {row.Location}
               </p>
-              <button className="btn btn-primary" onClick={() => props.toArtistPage(row.Headliners[0])} >
+              <button className="btn-primary" onClick={() => props.toArtistPage(row.Headliners[0])} >
                 Artist Page
               </button>
               <a href={row.Uri} className="card-link">

@@ -41,6 +41,7 @@ label {
  
   .card-flip:hover .front {
     transform: rotateY(-180deg);
+    position: absolute;
   }
     
   .card-flip:hover .back {
