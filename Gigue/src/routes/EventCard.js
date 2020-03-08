@@ -36,8 +36,8 @@ const EventInfo = props => {
               <p className="card-text">
                 {row.Location}
               </p>
-              <button className="btn-primary" onClick={() => props.toArtistPage(row.Headliners[0])} >
-                Artist Page
+              <button className="btn-primary mr-3" onClick={() => props.toArtistPage(row.Headliners[0])} >
+                Click for Artist Page about {row.Headliners[0]}
               </button>
               <a href={row.Uri} className="card-link">
                 Click to Buy Tickets

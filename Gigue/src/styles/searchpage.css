@@ -55,3 +55,7 @@ label {
     justify-content: center;
   }
 
+  .btn-primary{
+    border-radius: .25rem;
+  }
+
