@@ -2,7 +2,7 @@
 
 import React, { PropTypes, Component } from "react";
 import "./styles/bootstrap/css/bootstrap.min.css";
-//import "./styles/App.css";
+import "./styles/App.css";
 import "./index.css";
 import Header from "./routes/Header";
 import Body from "./routes/Body";
