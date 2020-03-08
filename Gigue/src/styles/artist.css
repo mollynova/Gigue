@@ -1,0 +1,9 @@
+.artist-page {
+    height: 75vh;
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    border-radius: .5em;
+    background-color: white;
+}
