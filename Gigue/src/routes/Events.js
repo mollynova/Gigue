@@ -6,7 +6,7 @@ import EventCard from "./EventCard";
 import ReactLoading from "react-loading";
 import Landing from "./Landing";
 import "../styles/searchpage.css";
-import {Bar} from "react-chartjs-2";
+import {Bar, Pie} from "react-chartjs-2";
 
 class Events extends React.Component {
   state = {
@@ -19,6 +19,21 @@ class Events extends React.Component {
           label : "Amounts",
           data : []
         }  
+      ]
+    },
+
+    chartDataArtist: {
+      labels: ["Solo Headliner", 
+              "Headliner with One Support", 
+              "Headliners with Multiple Supports", 
+              "More than one Headliner", 
+              "More than one Headliner, more than one Support"],
+
+      datasets: [
+        {
+          data: [],
+          backgroundColor: ['red', 'blue', 'green', 'orange', 'purple']
+        }
       ]
     }
   };
@@ -74,6 +89,7 @@ class Events extends React.Component {
             .then(data => {
               const VenueNames = [];
               const VenuePopularity = [];
+              const ArtistInfo = [0,0,0,0,0];
 
               const eventsQueried = data.map(x => {
                 let obj = {};
@@ -98,6 +114,18 @@ class Events extends React.Component {
                 } else {
                   VenuePopularity[position] += 1;
                 }
+
+                if(obj["Headliners"].length == 1 && obj["SupportArtists".length == 0]){
+                  ArtistInfo[0] += 1;
+                } else if (obj["Headliners"].length == 1 && obj["SupportArtists"].length == 1){
+                  ArtistInfo[1] += 1;
+                } else if (obj["Headliners"].length == 1 && obj["SupportArtists"].length > 1){
+                  ArtistInfo[2] += 1;
+                } else if (obj["Headliners"].length > 1 && obj["SupportArtists"].length == 0){
+                  ArtistInfo[3] += 1;
+                } else if(obj["Headliners"].length > 1 && obj["SupportArtists"].length > 1){
+                  ArtistInfo[4] += 1;
+                }
                 return obj;
               
               });
@@ -107,13 +135,26 @@ class Events extends React.Component {
                   labels: VenueNames,
                   datasets: [
                     {
-                      label : "Amounts",
+                      labels : "Amounts",
                       data : VenuePopularity
                     }  
                   ]
+                },
+                chartDataArtist: {
+                  labels: ["Solo Headliner", 
+                  "Headliner with One Support", 
+                  "Headliners with Multiple Supports", 
+                  "More than one Headliner", 
+                  "More than one Headliner, more than one Support"],
+                  datasets: [
+                    {
+                      data: ArtistInfo,
+                      backgroundColor: ['red', 'blue', 'green', 'orange', 'purple']
+                    }
+                  ]
                 }
               })
-              console.log(this.state.chartDataVenues);
+              console.log(this.state.chartDataArtist);
               return eventsQueried;
             })
             .then(results => {
@@ -197,6 +238,7 @@ class Events extends React.Component {
             </div>
            ) : (
              <div className="LoadedInfo">
+               <div className="chart-container">
                <div className="chart-area">
              <Bar
               data={this.state.chartDataVenues}
@@ -215,6 +257,16 @@ class Events extends React.Component {
               }}
               />
               </div>
+              <div className="chart-area">
+              <Pie
+                data={this.state.chartDataArtist}
+                options={{
+                  responsive: true
+                }}
+              />
+              </div>
+              </div>
+              
             <EventCard eventsData={events} toArtistPage={this.toArtistPage}/>
             </div>
            )
