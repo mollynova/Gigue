@@ -3,7 +3,7 @@ import "../styles/App.css";
 import "../styles/artist.css";
 
 const ArtistInfo = props => {
-    //Call Api here? Connect to Spotify
+    //Call Api here? Connect to Spotify, probably using the "Client Credentials" Flow
     console.log(props);
     return(
         <div className="artist-page">

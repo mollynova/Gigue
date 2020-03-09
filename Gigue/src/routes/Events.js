@@ -6,10 +6,21 @@ import EventCard from "./EventCard";
 import ReactLoading from "react-loading";
 import Landing from "./Landing";
 import "../styles/searchpage.css";
+import {Bar} from "react-chartjs-2";
 
 class Events extends React.Component {
   state = {
-    events: []
+    events: [],
+
+    chartDataVenues: {
+      labels: [],
+      datasets: [
+        {
+          label : "Amounts",
+          data : []
+        }  
+      ]
+    }
   };
 
   componentWillMount() {
@@ -61,6 +72,9 @@ class Events extends React.Component {
               return data.resultsPage.results.event;
             })
             .then(data => {
+              const VenueNames = [];
+              const VenuePopularity = [];
+
               const eventsQueried = data.map(x => {
                 let obj = {};
                 obj['EventName'] = x.displayName;
@@ -77,11 +91,29 @@ class Events extends React.Component {
                     return artist;
                   }
                 }).map(y => y.displayName)
-                
+                const position = VenueNames.indexOf(x.venue.displayName);
+                if(position == -1){
+                  VenueNames.push(x.venue.displayName);
+                  VenuePopularity.push(1);
+                } else {
+                  VenuePopularity[position] += 1;
+                }
                 return obj;
               
               });
               console.log(eventsQueried);
+              this.setState({
+                chartDataVenues: {
+                  labels: VenueNames,
+                  datasets: [
+                    {
+                      label : "Amounts",
+                      data : VenuePopularity
+                    }  
+                  ]
+                }
+              })
+              console.log(this.state.chartDataVenues);
               return eventsQueried;
             })
             .then(results => {
@@ -164,7 +196,27 @@ class Events extends React.Component {
               <ReactLoading type={"bars"} color={"white"} />
             </div>
            ) : (
+             <div className="LoadedInfo">
+               <div className="chart-area">
+             <Bar
+              data={this.state.chartDataVenues}
+              options={{
+
+                responsive: true,
+                scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:true,
+                          stepSize: 1
+                      }
+                  }]
+              },
+
+              }}
+              />
+              </div>
             <EventCard eventsData={events} toArtistPage={this.toArtistPage}/>
+            </div>
            )
         ) :(
           <div className="error-msg">

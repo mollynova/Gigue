@@ -59,3 +59,17 @@ label {
     border-radius: .25rem;
   }
 
+  .chart-area {
+    height: 50vh;
+    width: 50vw;
+    background-color: white;
+   
+    margin-top: 2.5rem;
+    margin-left: 2.7rem;
+
+  }
+
+  .Bar {
+    height: 25vh;
+  }
+
