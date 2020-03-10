@@ -31,9 +31,11 @@
   src: url("fonts/Serenity\ Script.otf");
 }
 .App {
-  width: 100vw;
-  height: 100vh;
-  background-image: url("../images/timelapse-bg-2.jpg");
+  /* width: 100vw;
+  height: 100vh; */
+  background-image: url("../images/mountains.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -52,6 +54,7 @@
 .header-title {
   display: inline-block;
   padding-top: 10px;
+  color: black;
 }
 .help-link {
   float: right;
@@ -60,8 +63,8 @@
   color: black;
 }
 
-.main-link{
-  color:black;
+.main-link {
+  color: black;
   display: inline;
 }
 .help {
@@ -93,7 +96,9 @@
   font-size: 40pt;
 }
 .main-body {
-  height: 35%;
+  /* height: 35%;
+   */
+  height: 75vh;
   margin: auto;
   margin-top: 100px;
   width: 1000px;
@@ -134,6 +139,11 @@
   font-size: 24;
   float: left;
   width: 85%;
+}
+.chart-container {
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-bottom: 100px;
 }
 
 .textbar-and-button {
@@ -181,4 +191,70 @@ p {
 .container {
   display: flex;
   justify-content: center;
+}
+
+.section-title {
+  font-size: 5vw;
+  margin: 4vw 0 3vw 0;
+  text-align: center;
+  color: white;
+  font-family: "mybela";
+}
+.section-title-2 {
+  margin: 0;
+  font-size: 5vw;
+  text-align: center;
+  color: white;
+  font-family: "mybela";
+}
+
+.card {
+  margin: 0 2vw 0 2vw;
+  align-self: flex-start;
+  background-color: rgba(255, 255, 255, 0.89);
+  padding-bottom: 20px;
+}
+
+.card-title {
+  font-size: 2vw;
+  color: rgb(77, 77, 77);
+  padding: 5px 20px 5px 20px;
+  font-family: "HelveticaNeue";
+  font-weight: bold;
+}
+
+.btn-primary {
+  display: inline-block;
+}
+
+.card-link {
+  color: white;
+}
+
+.card-subtitle {
+  padding: 0 20px 30px 20px;
+  font-family: "HelveticaNeue";
+}
+
+.supporting-artists {
+  padding-bottom: 20px;
+}
+
+.card-text {
+  font-size: 1.1vw;
+  padding: 0 20px 0 20px;
+  font-family: "HelveticaNeue";
+}
+
+.tabs {
+  width: 80%;
+  margin: 2vw auto 10vw auto;
+}
+
+.tab-btn {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid 1px #dee2e6;
+  background-color: white;
 }

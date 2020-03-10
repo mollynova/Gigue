@@ -6,7 +6,7 @@ import EventCard from "./EventCard";
 import ReactLoading from "react-loading";
 import Landing from "./Landing";
 import "../styles/searchpage.css";
-import {Bar, Pie} from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 
 class Events extends React.Component {
   state = {
@@ -16,34 +16,39 @@ class Events extends React.Component {
       labels: [],
       datasets: [
         {
-          label : "Amounts",
-          data : []
-        }  
+          label: "Amounts",
+          data: []
+        }
       ]
     },
 
     chartDataArtist: {
-      labels: ["Solo Headliner", 
-              "Headliner with One Support", 
-              "Headliners with Multiple Supports", 
-              "More than one Headliner", 
-              "More than one Headliner, more than one Support"],
+      labels: [
+        "Solo Headliner",
+        "Headliner with One Support",
+        "Headliners with Multiple Supports",
+        "More than one Headliner",
+        "More than one Headliner, more than one Support"
+      ],
 
       datasets: [
         {
           data: [],
-          backgroundColor: ['red', 'blue', 'green', 'orange', 'purple']
+          backgroundColor: ["red", "blue", "green", "orange", "purple"]
         }
       ]
     }
   };
 
   componentWillMount() {
-    const googleUrl = 'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:' + this.props.zip + '&key=AIzaSyBNWms-eVzSQmo6leT8Re4yBrpmC9tx-h0'
+    const googleUrl =
+      "https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:" +
+      this.props.zip +
+      "&key=AIzaSyBNWms-eVzSQmo6leT8Re4yBrpmC9tx-h0";
     fetch(googleUrl)
       .then(result => result.json())
       .then(result => {
-        if(result.results.length == 0){
+        if (result.results.length == 0) {
           throw "Invalid Zipcode!";
         }
         console.log(result);
@@ -55,7 +60,12 @@ class Events extends React.Component {
       .then(result => {
         const lat = result.lat.toFixed(2);
         const long = result.lng.toFixed(2);
-        const songkickAreaUrl = 'https://api.songkick.com/api/3.0/search/locations.json?location=geo:' + lat + ',' + long + '&apikey=nD4GefUecMO1Dzwh'
+        const songkickAreaUrl =
+          "https://api.songkick.com/api/3.0/search/locations.json?location=geo:" +
+          lat +
+          "," +
+          long +
+          "&apikey=nD4GefUecMO1Dzwh";
         console.log(songkickAreaUrl);
         return songkickAreaUrl;
       })
@@ -64,133 +74,158 @@ class Events extends React.Component {
           .then(result => result.json())
           .then(result => {
             console.log(result);
-            if(result.resultsPage.totalEntries == '0'){
+            if (result.resultsPage.totalEntries == "0") {
               throw "Area out of range";
             }
-            return result.resultsPage.results
+            return result.resultsPage.results;
           })
           .then(result => {
             const metroAreaId = result.location[0].metroArea.id;
-            const songkickEventsUrl = 'https://api.songkick.com/api/3.0/metro_areas/' + metroAreaId + '/calendar.json?apikey=nD4GefUecMO1Dzwh';
+            const songkickEventsUrl =
+              "https://api.songkick.com/api/3.0/metro_areas/" +
+              metroAreaId +
+              "/calendar.json?apikey=nD4GefUecMO1Dzwh";
             console.log(songkickEventsUrl);
             return songkickEventsUrl;
           })
           .then(url => {
             fetch(url)
-            .then(response => response.json())
-            .then(data => {
-              console.log(data);
-              console.log(data.resultsPage.results.event);
-              if(data.resultsPage.totalEntries == 0){
-                throw "No Concerts in this Area!"
-              }
-              return data.resultsPage.results.event;
-            })
-            .then(data => {
-              const VenueNames = [];
-              const VenuePopularity = [];
-              const ArtistInfo = [0,0,0,0,0];
+              .then(response => response.json())
+              .then(data => {
+                console.log(data);
+                console.log(data.resultsPage.results.event);
+                if (data.resultsPage.totalEntries == 0) {
+                  throw "No Concerts in this Area!";
+                }
+                return data.resultsPage.results.event;
+              })
+              .then(data => {
+                const VenueNames = [];
+                const VenuePopularity = [];
+                const ArtistInfo = [0, 0, 0, 0, 0];
 
-              const eventsQueried = data.map(x => {
-                let obj = {};
-                obj['EventName'] = x.displayName;
-                obj["Uri"] = x.uri;
-                obj["Venue"] = x.venue.displayName;
-                obj["StartDate"] = x.start.date;
-                obj["Location"] = x.location.city;
-                obj["Headliners"] = x.performance.filter(artist => {
-                  if(artist.billing == "headline")
-                    return artist;
-                }).map(y => y.displayName);
-                obj["SupportArtists"] = x.performance.filter(artist => {
-                  if(artist.billing != "headline"){
-                    return artist;
+                const eventsQueried = data.map(x => {
+                  let obj = {};
+                  obj["EventName"] = x.displayName;
+                  obj["Uri"] = x.uri;
+                  obj["Venue"] = x.venue.displayName;
+                  obj["StartDate"] = x.start.date;
+                  obj["Location"] = x.location.city;
+                  obj["Headliners"] = x.performance
+                    .filter(artist => {
+                      if (artist.billing == "headline") return artist;
+                    })
+                    .map(y => y.displayName);
+                  obj["SupportArtists"] = x.performance
+                    .filter(artist => {
+                      if (artist.billing != "headline") {
+                        return artist;
+                      }
+                    })
+                    .map(y => y.displayName);
+                  const position = VenueNames.indexOf(x.venue.displayName);
+                  if (position == -1) {
+                    VenueNames.push(x.venue.displayName);
+                    VenuePopularity.push(1);
+                  } else {
+                    VenuePopularity[position] += 1;
                   }
-                }).map(y => y.displayName)
-                const position = VenueNames.indexOf(x.venue.displayName);
-                if(position == -1){
-                  VenueNames.push(x.venue.displayName);
-                  VenuePopularity.push(1);
-                } else {
-                  VenuePopularity[position] += 1;
-                }
 
-                if(obj["Headliners"].length == 1 && obj["SupportArtists".length == 0]){
-                  ArtistInfo[0] += 1;
-                } else if (obj["Headliners"].length == 1 && obj["SupportArtists"].length == 1){
-                  ArtistInfo[1] += 1;
-                } else if (obj["Headliners"].length == 1 && obj["SupportArtists"].length > 1){
-                  ArtistInfo[2] += 1;
-                } else if (obj["Headliners"].length > 1 && obj["SupportArtists"].length == 0){
-                  ArtistInfo[3] += 1;
-                } else if(obj["Headliners"].length > 1 && obj["SupportArtists"].length > 1){
-                  ArtistInfo[4] += 1;
-                }
-                return obj;
-              
+                  if (
+                    obj["Headliners"].length == 1 &&
+                    obj["SupportArtists".length == 0]
+                  ) {
+                    ArtistInfo[0] += 1;
+                  } else if (
+                    obj["Headliners"].length == 1 &&
+                    obj["SupportArtists"].length == 1
+                  ) {
+                    ArtistInfo[1] += 1;
+                  } else if (
+                    obj["Headliners"].length == 1 &&
+                    obj["SupportArtists"].length > 1
+                  ) {
+                    ArtistInfo[2] += 1;
+                  } else if (
+                    obj["Headliners"].length > 1 &&
+                    obj["SupportArtists"].length == 0
+                  ) {
+                    ArtistInfo[3] += 1;
+                  } else if (
+                    obj["Headliners"].length > 1 &&
+                    obj["SupportArtists"].length > 1
+                  ) {
+                    ArtistInfo[4] += 1;
+                  }
+                  return obj;
+                });
+                console.log(eventsQueried);
+                this.setState({
+                  chartDataVenues: {
+                    labels: VenueNames,
+                    datasets: [
+                      {
+                        label: "Amounts",
+                        data: VenuePopularity,
+                        backgroundColor: "red"
+                      }
+                    ]
+                  },
+                  chartDataArtist: {
+                    labels: [
+                      "Solo Headliner",
+                      "Headliner with One Support",
+                      "Headliners with Multiple Supports",
+                      "More than one Headliner",
+                      "More than one Headliner, more than one Support"
+                    ],
+                    datasets: [
+                      {
+                        data: ArtistInfo,
+                        backgroundColor: [
+                          "red",
+                          "blue",
+                          "green",
+                          "orange",
+                          "purple"
+                        ]
+                      }
+                    ]
+                  }
+                });
+                console.log(this.state.chartDataArtist);
+                return eventsQueried;
+              })
+              .then(results => {
+                this.setState({
+                  events: results,
+                  done: true
+                });
+              })
+              .catch(error => {
+                console.log(error);
+                this.setState({
+                  error: true,
+                  errorMsg: error
+                });
               });
-              console.log(eventsQueried);
-              this.setState({
-                chartDataVenues: {
-                  labels: VenueNames,
-                  datasets: [
-                    {
-                      label : "Amounts",
-                      data : VenuePopularity,
-                      backgroundColor: "red"
-                    }  
-                  ]
-                },
-                chartDataArtist: {
-                  labels: ["Solo Headliner", 
-                  "Headliner with One Support", 
-                  "Headliners with Multiple Supports", 
-                  "More than one Headliner", 
-                  "More than one Headliner, more than one Support"],
-                  datasets: [
-                    {
-                      data: ArtistInfo,
-                      backgroundColor: ['red', 'blue', 'green', 'orange', 'purple']
-                    }
-                  ]
-                }
-              })
-              console.log(this.state.chartDataArtist);
-              return eventsQueried;
-            })
-            .then(results => {
-              this.setState({
-                events: results,
-                done: true
-              })
-            })
-            .catch(error =>{
-              console.log(error)
-              this.setState({
-                error: true,
-                errorMsg: error
-              })
-            })
           })
-          .catch(error =>{
-            console.log(error)
+          .catch(error => {
+            console.log(error);
             this.setState({
               error: true,
               errorMsg: error
-            })
-          })
+            });
+          });
       })
       .catch(error => {
-        console.log(error)
+        console.log(error);
         this.setState({
           error: true,
-          errorMsg: error 
-        })
-      })
-
-       
+          errorMsg: error
+        });
+      });
   }
-
 
   constructor(props) {
     super(props);
@@ -200,7 +235,7 @@ class Events extends React.Component {
       done: undefined,
       error: false,
       errorMsg: undefined
-   }
+    };
   }
 
   handleChange(e) {
@@ -214,8 +249,7 @@ class Events extends React.Component {
         artist: artistName
       }
     });
-
-  }
+  };
   // below I added a link back to the landing page, just to make our lives easier while testing
   // we'll remove it when we actually build the events page, since users won't need to go back to
   // the landing page
@@ -223,7 +257,7 @@ class Events extends React.Component {
     const thisZip = this.props.zip;
     const { events } = this.state;
     //TODO: This section is not working. It just creates an empty page. I don't know why
-    if(thisZip == ''){
+    if (thisZip == "") {
       alert("No Zip is inputted - redirecting to main page");
       return <Redirect to="/" />;
     }
@@ -231,55 +265,52 @@ class Events extends React.Component {
     //<div className="eventsPage">Zip entered was: {thisZip}</div>
     return (
       <div>
-        
         {!this.state.error ? (
           !this.state.done ? (
             <div className="container">
               <ReactLoading type={"bars"} color={"white"} />
             </div>
-           ) : (
-             <div className="LoadedInfo">
-               <div className="chart-container">
-               <div className="chart-area">
-             <Bar
-              data={this.state.chartDataVenues}
-              options={{
+          ) : (
+            <div className="LoadedInfo">
+              <EventCard eventsData={events} toArtistPage={this.toArtistPage} />
 
-                responsive: true,
-                scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero:true,
-                          stepSize: 1
+              <div className="chart-container">
+                <div className="chart-area">
+                  <Bar
+                    data={this.state.chartDataVenues}
+                    options={{
+                      responsive: true,
+                      scales: {
+                        yAxes: [
+                          {
+                            ticks: {
+                              beginAtZero: true,
+                              stepSize: 1
+                            }
+                          }
+                        ]
                       }
-                  }]
-              },
+                    }}
+                  />
+                </div>
 
-              }}
-              />
+                <div className="chart-area chart-right">
+                  <Pie
+                    data={this.state.chartDataArtist}
+                    options={{
+                      responsive: true
+                    }}
+                  />
+                </div>
               </div>
-              <div className="chart-area chart-right">
-              <Pie
-                data={this.state.chartDataArtist}
-                options={{
-                  responsive: true
-                }}
-              />
-              </div>
-              </div>
-              
-            <EventCard eventsData={events} toArtistPage={this.toArtistPage}/>
             </div>
-           )
-        ) :(
+          )
+        ) : (
           <div className="error-msg">
-            <h1>
-              {this.state.errorMsg}
-            </h1>
-
+            <h1>{this.state.errorMsg}</h1>
           </div>
         )}
-        
+
         <div>
           <ul>
             <li>

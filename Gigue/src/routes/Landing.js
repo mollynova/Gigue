@@ -44,7 +44,7 @@ class Landing extends React.Component {
       <div>
         <div className="main-body">
           <div className="main-question" id="thisfontonly">
-            What city are you looking for?
+            What zip are you looking for?
           </div>
           <div className="textbar-and-button">
             <input
