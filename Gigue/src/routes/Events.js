@@ -135,8 +135,9 @@ class Events extends React.Component {
                   labels: VenueNames,
                   datasets: [
                     {
-                      labels : "Amounts",
-                      data : VenuePopularity
+                      label : "Amounts",
+                      data : VenuePopularity,
+                      backgroundColor: "red"
                     }  
                   ]
                 },
@@ -257,7 +258,7 @@ class Events extends React.Component {
               }}
               />
               </div>
-              <div className="chart-area">
+              <div className="chart-area chart-right">
               <Pie
                 data={this.state.chartDataArtist}
                 options={{
