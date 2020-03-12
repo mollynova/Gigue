@@ -30,6 +30,10 @@
   font-family: "Serenity";
   src: url("fonts/Serenity\ Script.otf");
 }
+@font-face {
+  font-family: "Kiona";
+  src: url("fonts/Kiona-Regular.ttf");
+}
 .App {
   /* width: 100vw;
   height: 100vh; */
@@ -107,18 +111,28 @@
 .main-question {
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 65pt;
+  font-size: 42pt;
+  font-weight: bold;
   text-align: center;
-  font-family: "Sanko";
+  font-family: "Kiona";
   color: white;
   display: flex;
+}
+.artist-header-text {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 90pt;
+  text-align: center;
+  font-family: "Kiona";
+  color: white;
 }
 
 .button {
   background-color: white;
   color: black;
   font-size: 36px;
-  font-family: "Sanko";
+  font-family: "Kiona";
+  font-weight: bold;
   border: none;
   padding: 0px 36px;
   text-align: center;
@@ -139,6 +153,10 @@
   font-size: 24;
   float: left;
   width: 85%;
+}
+.card-body {
+  padding-left: 12%;
+  padding-right: 12%;
 }
 .chart-container {
   margin-top: 0px;
@@ -214,7 +232,14 @@ p {
   background-color: rgba(255, 255, 255, 0.89);
   padding-bottom: 20px;
 }
-
+.player {
+  padding-bottom: 20px;
+}
+.song-card {
+  margin: 0;
+  padding-left: 0;
+  padding-right: 10px;
+}
 .card-title {
   font-size: 2vw;
   color: rgb(77, 77, 77);

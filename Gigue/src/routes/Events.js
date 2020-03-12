@@ -103,6 +103,7 @@ class Events extends React.Component {
                 const VenueNames = [];
                 const VenuePopularity = [];
                 const ArtistInfo = [0, 0, 0, 0, 0];
+                console.log("data (important one): ", data);
 
                 const eventsQueried = data.map(x => {
                   let obj = {};
@@ -229,24 +230,69 @@ class Events extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.toArtistPage = this.toArtistPage.bind(this);
+
     this.state = {
       done: undefined,
       error: false,
       errorMsg: undefined
+      // tmEvents: [],
+      // counter: 0
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.toArtistPage = this.toArtistPage.bind(this);
+    // this.buildTmEvents = this.buildTmEvents.bind(this);
+    // this.countUp = this.countUp.bind(this);
   }
 
+  // countUp = () => {
+  //   this.setState({
+  //     counter: this.state.counter + 1
+  //   });
+  // };
   handleChange(e) {
     this.props.onZipChange(e.target.value);
   }
 
-  toArtistPage = artistName => {
+  // buildTmEvents = events => {
+  //   events.map(data => {
+  //     if (data.Headliners.length > 0) {
+  // const artistName = data.Headliners[0].replace(/\s/g, "+");
+  // const location = data.Location.replace(/\s/g, "").split(",");
+  // const city = location[0];
+  // const state = location[1];
+  // const country = location[2];
+  // const eventUrl =
+  //   "https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events.json?countryCode=" +
+  //   country +
+  //   "&city=" +
+  //   city +
+  //   "&stateCode=" +
+  //   state +
+  //   "&keyword=" +
+  //   artistName +
+  //   "&classificationName=music&apikey=PHYwwIYWv17JZadduBfzAq9lLsqOsWIN";
+  // fetch(eventUrl)
+  //   .then(response => response.json())
+  //   .then(events => {
+  //     console.log("event deets from TM: ", events);
+  //   })
+  //         .then(results => {
+  //           this.setState({
+  //             tmEvents: results
+  //           });
+  //         });
+  //       this.countUp();
+  //     }
+  //   });
+  // };
+
+  toArtistPage = (artistName, locationName) => {
     return this.props.history.push({
       pathname: "/ArtistPage",
       state: {
-        artist: artistName
+        artist: artistName,
+        location: locationName
       }
     });
   };
@@ -256,6 +302,10 @@ class Events extends React.Component {
   render() {
     const thisZip = this.props.zip;
     const { events } = this.state;
+    console.log("events: ", events);
+    // const { tmEvents } = this.state;
+    // this.buildTmEvents(events);
+    console.log("number of TM api calls: ", this.state.counter);
     //TODO: This section is not working. It just creates an empty page. I don't know why
     if (thisZip == "") {
       alert("No Zip is inputted - redirecting to main page");
@@ -272,7 +322,11 @@ class Events extends React.Component {
             </div>
           ) : (
             <div className="LoadedInfo">
-              <EventCard eventsData={events} toArtistPage={this.toArtistPage} />
+              <EventCard
+                eventsData={events}
+                // tmEventsData={tmEvents}
+                toArtistPage={this.toArtistPage}
+              />
 
               <div className="chart-container">
                 <div className="chart-area">

@@ -14,7 +14,9 @@ import {
   Row,
   Col,
   Media,
-  Button
+  Button,
+  CardImg,
+  CardGroup,
 } from "reactstrap";
 import "../styles/App.css";
 
@@ -25,8 +27,11 @@ class EventCard extends React.Component {
   }
 
   render() {
-    const { eventsData, toArtistPage } = this.props;
+    const { eventsData, tmEventsData, toArtistPage } = this.props;
     console.log("props.eventsData: ", this.props.eventsData);
+    // console.log("props.tmEventsData: ", this.props.tmEventsData);
+    // var thisData = this.props.eventsData.splice(10, 30);
+    // console.log("thisData: ", thisData);
     return (
       <div>
         <h2 className="section-title">Upcoming Shows</h2>
@@ -53,11 +58,14 @@ class EventCard extends React.Component {
                             </button>
                           </CardText>
                           <CardText>
-                            <div classname="right-btn">
+                            <div className="right-btn">
                               <button
                                 className="btn-primary mr-3"
                                 onClick={() =>
-                                  this.props.toArtistPage(data.Headliners[0])
+                                  this.props.toArtistPage(
+                                    data.Headliners[0],
+                                    data.Location
+                                  )
                                 }
                               >
                                 Explore Artist
