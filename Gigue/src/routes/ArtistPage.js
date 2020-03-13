@@ -60,8 +60,14 @@ class ArtistPage extends React.Component {
       song3 = this.state.query.results[2].trackName;
 
       release1 = this.state.query.results[0].releaseDate;
-      release2 = this.state.query.results[1].releaseDate;
+      release1 = release1.split("T");
+      release1 = release1[0];
+      release2 = release2 = this.state.query.results[1].releaseDate;
+      release2 = release2.split("T");
+      release2 = release2[0];
       release3 = this.state.query.results[2].releaseDate;
+      release3 = release3.split("T");
+      release3 = release3[0];
 
       genre1 = this.state.query.results[0].primaryGenreName;
       genre2 = this.state.query.results[1].primaryGenreName;

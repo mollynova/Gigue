@@ -20,19 +20,20 @@ class Help extends React.Component {
       <div>
         <div className="card help-card">
           <div clasName="card-body">
-            <p id="help-text">
-              This is the Help Page for Gigue! Right now, Gigue is a series of simple
-              API calls designed to just get the information for shows in your area.
-              Simply navigate to the Home page using the link below, enter the Zip Code
-              for the area you're interested in, and click "Go!". Gigue will automatically
-              show you different shows in your area.
-  
-              Simply hover each "card" in order to find out more about the show, the band, and
-              a link to purchase tickets to the show.
-  
-              If you have any question and suggestions, please shoot as an email at the email below!
-              example@gmail.com
-          </p>
+            <h2 className="section-title-3">About Gigue</h2>
+            <p className="help-text">
+              Gigue was designed to help put you in touch with local shows in your area.
+            </p>
+            <p className="help-text">
+              Enter a zip code to see a chronological list of upcoming music shows,
+              including the date and venue.
+            </p>
+            <p className="help-text">
+              To purchase tickets, select the "Purchase Tickets" button under any given show.
+            </p>
+            <p className="help-text">
+              To explore top music by an artist, select the "Explore Artist" button under any show.
+            </p>
           </div>
 
         </div>

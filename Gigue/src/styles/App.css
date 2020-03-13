@@ -60,16 +60,29 @@
   padding-top: 10px;
   color: black;
 }
+.container {
+  height: 100vw;
+}
 .help-link {
-  float: right;
-  padding-right: 5%;
+  display: inline-block;
   padding-top: 10px;
   color: black;
+  padding-left: 80%;
+  padding-right: 20px;
 }
-
+.help-text {
+  font-family: "HelveticaNeue";
+  font-size: 30pt;
+  height: 10vh;
+  color: black;
+}
+.test {
+  display: inline-block;
+  padding-left: 20px;
+}
 .main-link {
   color: black;
-  display: inline;
+  display: inline-block;
 }
 .help {
   color: black;
@@ -225,6 +238,13 @@ p {
   color: white;
   font-family: "Kiona";
 }
+.section-title-3 {
+  font-size: 5vw;
+  margin: 4vw 0 3vw 0;
+  text-align: center;
+  font-family: "Kiona";
+  color: black;
+}
 
 .card {
   margin: 0 2vw 0 2vw;
@@ -251,7 +271,9 @@ p {
 .btn-primary {
   display: inline-block;
 }
-
+.right-btn {
+  display: inline-block;
+}
 .card-link {
   color: white;
 }
