@@ -74,3 +74,19 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 npm run build fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+Features to be added:
+-back buttons on events page and artist pages
+-cards all the same size on artist pages
+-remove "Track" from track name on artist pages
+-multiple sample tracks can be played at once- check if one is playing and pause it if another one starts playing
+-get rid of stats on the events page
+-add some more info to the events page cards, like genre, at minimum
+-make events page look nicer
+-fix header so the padding on the bottom isnt so huge
+-add link to purchase tickets to individual artist pages
+
+in the future:
+-make user accounts? so users can like particular shows to keep track of them
+    -also let users like particular artists and get email or text notifications when they come to whatever zip code the user has listed as "home"
+        -maybe allow multiple 'home' zip codes

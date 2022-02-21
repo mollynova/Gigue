@@ -1,6 +1,7 @@
 {
   "name": "gigue",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

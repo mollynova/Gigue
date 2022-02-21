@@ -42,9 +42,9 @@ class Events extends React.Component {
 
   componentWillMount() {
     const googleUrl =
-      "https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:" +
+      "https://maps.googleapis.com/maps/api/geocode/json?address=" +
       this.props.zip +
-      "&key=AIzaSyBNWms-eVzSQmo6leT8Re4yBrpmC9tx-h0";
+      "&key=AIzaSyD4JUjJlvCDbZO7NeG_1luAwhjp7qGJGkY";
     fetch(googleUrl)
       .then(result => result.json())
       .then(result => {
