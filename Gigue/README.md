@@ -1,17 +1,18 @@
+5/2022: Please note that the requirements for use of the Songkick API have recently changed. I'm currently in the process of getting a new, working API key, and making sure the project meets the new requirements. This should be back up by mid-May, 2022.
+
 This project was bootstrapped with Create React App (https://github.com/facebook/create-react-app).
+
 Gigue
 
-This project was built by Alicja Wolak and Molly Novash.
+This project was built by Molly Novash and Alicja Wolak.
 
 Gigue allows you to enter a zip code, and through a series of simple API calls to Google Maps API and Songkick API, it builds a list of music events happening in the area in the near future, displayed chronologically.
 
 Each event displays the artist, supporting artist(s), venue, location, and date of the show. From there, you have the option of being directed to an external website to purchase tickets, or of exploring songs by that particular artist. If you choose the second option, the page rerenders to display the artist's top 3 songs on iTunes, with a playable preview of the song and some track information, from the iTunes API.
-To run the application
 
-In the project directory, you can run:
-npm start
+To run the application in development mode:
 
-Runs the app in the development mode.
+In the project directory, run `npm start`
 Open http://localhost:3000 to view it in the browser.
 
 The page will reload if you make edits.
