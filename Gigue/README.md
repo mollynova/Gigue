@@ -1,5 +1,7 @@
 5/2022: Please note that the requirements for use of the Songkick API have recently changed. I'm currently in the process of getting a new, working API key, and making sure the project meets the new requirements. This should be back up by mid-May, 2022.
 
+Note: The default branch for this project is `master` , not `main`.
+
 This project was bootstrapped with Create React App (https://github.com/facebook/create-react-app).
 
 Gigue
